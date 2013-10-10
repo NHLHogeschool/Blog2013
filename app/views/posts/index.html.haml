@@ -1,0 +1,19 @@
+%h1 Weblog van Dirk Sierd
+
+= form_tag posts_path do
+  %p
+    = text_field_tag :q, '', placeholder: 'Zoekterm hier...'
+
+%h2 Blog-posts
+
+- for post in @posts
+  %article
+    %h1= link_to post.title, post
+    = simple_format post.body
+
+%h2 Google resultaten
+%ul
+  - for result in @results
+    %li= link_to result[:title], result[:url]
+
+%p= link_to 'New Post', new_post_path
